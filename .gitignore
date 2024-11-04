@@ -6,7 +6,10 @@
 credentials.localhost.js
 
 # Data directory
-data/base/*.*
+data/result/*.*
+data/merged/*.*
+data/shapes/*.*
+data/individual/*.txt
 data/individual/2010/*.*
 data/individual/2017/*.*
 data/individual/2018/*.*
