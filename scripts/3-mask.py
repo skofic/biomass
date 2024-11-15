@@ -20,7 +20,7 @@ def process_year(year, base_path, vector_path):
         spatial_ref = vector_layer.GetSpatialRef()
         if spatial_ref is None:
             # Set a default spatial reference if missing
-            spatial_ref = osr.SpatialReference()
+            spatial_ref = ogr.SpatialReference()
             spatial_ref.ImportFromEPSG(4326)  # Example: WGS84
             vector_layer.SetSpatialRef(spatial_ref)
 
@@ -65,9 +65,10 @@ def process_year(year, base_path, vector_path):
             result = {
                 "type": "Feature",
                 "properties": {
-                    "GeometryID": feature.GetField('GeometryID'),
-                    "chr_CCI-AGB_avg": mean_val,
-                    "chr_CCI-AGB_std": std_val
+                    "unit": feature.GetField("unit"),
+                    "hash": feature.GetField('hash'),
+                    "chr_AvBiomass": mean_val,
+                    "chr_StdBiomass": std_val
                 },
                 "geometry": json.loads(geom.ExportToJson())
             }
@@ -83,14 +84,14 @@ def process_year(year, base_path, vector_path):
     except Exception as e:
         print(f"Error processing year {year}: {e}")
 
-# Get the base path
-base_path = sys.argv[1]
-
 # Get the list of years
 years = ["2010", "2017", "2018", "2019", "2020"]
 
+# Get the base path
+base_path = "/Users/milko/Local/Development/Workshop/biomass"
+
 # Get the shape file path
-vector_path = f"{base_path}/data/shapes/unit_shapes.geojson"
+vector_path = f"{base_path}/data/shapes/shapes/shapes.geojson"
 
 # Iterate years
 for year in years:
