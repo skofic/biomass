@@ -1,1 +1,1 @@
-This directory contains the Biomass data.
+This directory contains all the shape files.

@@ -1,0 +1,1 @@
+This directory contains the shape files that will be used to mask the data.
